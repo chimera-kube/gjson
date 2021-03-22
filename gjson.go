@@ -2,7 +2,6 @@
 package gjson
 
 import (
-	"encoding/json"
 	"strconv"
 	"strings"
 	"time"
@@ -1818,12 +1817,6 @@ func isSimpleName(component string) bool {
 }
 
 func appendJSONString(dst []byte, s string) []byte {
-	for i := 0; i < len(s); i++ {
-		if s[i] < ' ' || s[i] == '\\' || s[i] == '"' || s[i] > 126 {
-			d, _ := json.Marshal(s)
-			return append(dst, string(d)...)
-		}
-	}
 	dst = append(dst, '"')
 	dst = append(dst, s...)
 	dst = append(dst, '"')
